@@ -5,8 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html ng-app="myApp" ng-app lang="en">
 <head>
     <meta charset="utf-8">
-    <?php echo  base_url();?>
-<!--    <link href="<?php echo base_url();?>assest/css/bootstrap.min.css" rel="stylesheet">-->
+   
+    <link href="<?php echo base_url();?>assest/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
     ul>li, a{cursor: pointer;}
     </style>

@@ -10,7 +10,7 @@ myApp.config(['$routeProvider',
       })
       .when('/edit-customer/:customerID', {
         title: 'Edit Customers',
-        templateUrl: 'partials/edit-customer.html',
+        templateUrl: 'assest/partials/edit-customer.html',
         controller: 'editCtrl',
         resolve: {
           customer: function(services, $route){

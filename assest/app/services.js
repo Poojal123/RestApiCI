@@ -1,6 +1,6 @@
 myApp.factory('Student', ['$resource','CORE_CONFIG','WEB_API', function($resource,CORE_CONFIG,WEB_API)
 	 {
-             alert(CORE_CONFIG.WEB_SERVICE+WEB_API.GETDATA);
+//             alert(CORE_CONFIG.WEB_SERVICE+WEB_API.GETDATA);
 	  return $resource(CORE_CONFIG.WEB_SERVICE+WEB_API.GETDATA+'/:id', {},{ 'update': { method:'PUT' } 
 	 }  
 	); 

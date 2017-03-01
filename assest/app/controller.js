@@ -1,16 +1,14 @@
 myApp.controller('listCtrl', function ($scope, Student,CORE_CONFIG,WEB_API) {
-//    alert("hiii");
-//    alert("kajfsljhfsa");
-//    dxlkjfd
-    alert(CORE_CONFIG.WEB_SERVICE+WEB_API.GETDATA);
+
     $scope.customer = Student.get();
     $scope.customer.$promise.then(function(result) {
-					$scope.setLog(100,"Images are optimized and converted to TIFF",""); // = function(proval, currentstatus, css, newlog)
-					$timeout(function(){
-						$scope.proval = 0;
-					}, 1000);
+//					$scope.setLog(100,"Images are optimized and converted to TIFF",""); // = function(proval, currentstatus, css, newlog)
+//					$timeout(function(){
+//						$scope.proval = 0;
+//					}, 1000);
                                         $scope.customers = result.result;
-				toastr.success(result.result+' Images Optimized');
+                                        console.log($scope.customers);
+				
 			});
 //    Student.getCustomers().then(function(data){
 //        $scope.customers = data.data;
