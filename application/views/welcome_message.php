@@ -7,10 +7,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="utf-8">
    
     <link href="<?php echo base_url();?>assest/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-    ul>li, a{cursor: pointer;}
-    </style>
-    <title>Creating a Simple RESTful PHP web service which is consumed by a AngularJS application</title>
+    <link href="<?php echo base_url();?>assest/canvasviewer/src/CanvasViewer.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fcrohas.github.io/angular-canvas-viewer/assets/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="http://fcrohas.github.io/angular-canvas-viewer/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="http://fcrohas.github.io/angular-canvas-viewer/assets/css/bootstrap-theme.min.css">
+
+    <title>Crop Image</title>
 </head>
 <body>
 <div class="navbar navbar-default" id="navbar">
@@ -30,11 +32,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     </div>
 </div>
-
-<script src="<?php echo base_url();?>assest/js/angular.min.js"></script>
+ <script  src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!--<script src="<?php echo base_url();?>assest/js/angular.min.js"></script>-->
+<script src="<?php echo base_url();?>assest/canvasviewer/assets/lib/angular/angular.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php echo base_url();?>assest/js/angular-route.min.js"></script>
 <script src="<?php echo base_url();?>assest/js/angular-resource.js"></script>
+<script src="<?php echo base_url();?>assest/canvasviewer/dist/CanvasViewer.all.min.js"></script>
 
+        
+        <script src="<?php echo base_url();?>assest/canvasviewer/assets/lib/libtiff/tiff.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="<?php echo base_url();?>assest/canvasviewer/assets/lib/pdfjs/pdf.compat.js" type="text/javascript" charset="utf-8"></script>
+        <script src="<?php echo base_url();?>assest/canvasviewer/assets/lib/pdfjs/pdf.js" type="text/javascript" charset="utf-8"></script>
+        <script src="<?php echo base_url();?>assest/canvasviewer/assets/lib/json-formatter/dist/json-formatter.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="<?php echo base_url();?>assest/canvasviewer/dist/CanvasViewer.all.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="<?php echo base_url();?>assest/canvasviewer/src/FormatReader.js" type="text/javascript" charset="utf-8"></script>	
+        <script src="<?php echo base_url();?>assest/canvasviewer/src/CanvasViewer.js" type="text/javascript" charset="utf-8"></script>	
 <script src="<?php echo base_url();?>assest/app/app.js"></script>    
 <script src="<?php echo base_url();?>assest/app/config.js"></script>
 <script src="<?php echo base_url();?>assest/app/CONSTANTS.js"></script>
@@ -44,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      <div>
 <div class="container">
 <br/>
-<blockquote><h4><a href="http://angularcode.com/demo-of-a-simple-crud-restful-php-service-used-with-angularjs-and-mysql/">A simple demonstration of CRUD RESTful php service that can be used with Angularjs & mysql</a></h4></blockquote>
+<blockquote><h4><a href="http://angularcode.com/demo-of-a-simple-crud-restful-php-service-used-with-angularjs-and-mysql/">Cro Image</a></h4></blockquote>
 <br/>
     <div ng-view="" id="ng-view"></div>
 

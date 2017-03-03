@@ -16,5 +16,7 @@ myApp.constant('WEB_API',
 	{
 		// ALL CASA WEB SERVICES
 		GETDATA: '/Student/StudentData',
+		FOLDERSCAN: '/CropImageApi/GetFolderData',
+		convertImage: '/CropImageApi/ConvertImage',
         }
         );

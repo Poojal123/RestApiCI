@@ -1,4 +1,9 @@
 <?php
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')           
+    define("SEPARATOR", "\\\\");
+else 
+    define("SEPARATOR", "/");
+	
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
@@ -83,3 +88,15 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+
+
+
+        define('WEBSITE_PATH',FCPATH);
+	define('STORAGE_ROOT',FCPATH."storage");
+        define('IMPORT_IMAGES_ROOT',WEBSITE_PATH."ProjectStorage".SEPARATOR."17022017HA08".SEPARATOR."");
+        define('WEBSITE_URL','http://localhost/RestApi/');
+        define('URL_STORAGE_ROOT',WEBSITE_URL."ProjectStorage".SEPARATOR."");
+	define('URL_IMPORT_IMAGES_ROOT',URL_STORAGE_ROOT."17022017HA08".SEPARATOR."");	
+//        define('URL_IMAGE_INDEXING_JOB_ROOT',URL_IMPORT_IMAGES_ROOT."casaindex".SEPARATOR."");

@@ -1,12 +1,12 @@
-var myApp = angular.module('myApp', ['ngRoute','ngResource']);
+var myApp = angular.module('myApp', ['ngRoute','ngResource','jsonFormatter', 'CanvasViewer']);
 //alert("jkjhkjhkj");
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/', {
-        title: 'Customers',
-        templateUrl: 'assest/partials/customers.html',
-        controller: 'listCtrl'
+        title: 'ImageCrop',
+        templateUrl: 'assest/partials/CropeImage.html',
+        controller: 'CropController'
       })
       .when('/edit-customer/:customerID', {
         title: 'Edit Customers',
@@ -22,7 +22,7 @@ myApp.config(['$routeProvider',
       .otherwise({
         redirectTo: '/'
       });
-      alert("$routeProvider"+ JSON.stringify($routeProvider));
+//      alert("$routeProvider"+ JSON.stringify($routeProvider));
 }]);
 myApp.run(['$location', '$rootScope', function($location, $rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {

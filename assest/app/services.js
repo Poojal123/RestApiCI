@@ -5,6 +5,20 @@ myApp.factory('Student', ['$resource','CORE_CONFIG','WEB_API', function($resourc
 	 }  
 	); 
 }]);
+myApp.factory('FolderScan', ['$resource','CORE_CONFIG','WEB_API', function($resource,CORE_CONFIG,WEB_API)
+	 {
+//             alert(CORE_CONFIG.WEB_SERVICE+WEB_API.GETDATA);
+	  return $resource(CORE_CONFIG.WEB_SERVICE+WEB_API.GETDATA+'/:id', {},{ 'update': { method:'PUT' } 
+	 }  
+	); 
+}]);
+myApp.factory('CropImage', ['$resource','CORE_CONFIG','WEB_API', function($resource,CORE_CONFIG,WEB_API)
+	 {
+             alert(CORE_CONFIG.WEB_SERVICE+WEB_API.convertImage);
+	  return $resource(CORE_CONFIG.WEB_SERVICE+WEB_API.convertImage+'/:name', {},{ 'update': { method:'PUT' } 
+	 }  
+	); 
+}]);
 myApp.factory("services", ['$http','CORE_CONFIG', function($http,CORE_CONFIG) {
   var serviceBase = 'services/'
     var obj = {};
