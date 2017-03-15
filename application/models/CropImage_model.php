@@ -147,7 +147,8 @@ class CropImage_model extends CI_Model{
         }
         public function SaveCoordinates($x,$y,$w,$h,$pageNo,$fieldType){
             
-            
+            $sql1 = "truncate table vu_imgsettings";
+            $qparent1 = $this->db->query($sql1);
             $sql = "insert into vu_imgsettings (xCo, yCo,Width,Height,PageNo,FieldType) values (".$x.",".$y.",".$w.",".$h.",".$pageNo.",'".$fieldType."')";	
 			$qparent = $this->db->query($sql);
 			 $insert_id = $this->db->insert_id();
