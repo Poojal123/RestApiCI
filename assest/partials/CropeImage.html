@@ -1,28 +1,28 @@
 <div >
    <form class="form-inline">
     <div class="form-group">
-      <label for="email">Folder Name </label>
+      <label for="folder">Folder Name </label>
       <input type="text" class="form-control" id="foldername" ng-model="folderName"  placeholder="Enter Folder Name Of Images">
     </div>
     <button type="submit" ng-click="scanFolder()" class="btn btn-default">Submit</button>
   </form>
-    <input type="text" class="form-control" id="pageNumber" ng-model="pageNo" placeholder="Enter Page no Which you want to crop">
-    <div class="col-md-5 max-height">
+    
+    <div class="row">
+    <div class="col-sm-5 max-height">
         <div class="content" style="height:70vh;" >
             <canvas-viewer src="formdata.fileInput" title="TITLE" options="options"></canvas-viewer>
         </div>
     </div>
-    <div class="col-md-4 max-height">
-        <select id="selectType">
-            <option>Photo</option>
-            <option>Signature</option>
-        </select>
-
+        <div class="col-sm-2 max-height">
+<input type="text" class="form-control" id="pageNumber" ng-model="pageNo" placeholder="Enter Page no Which you want to crop">
+        </div>
+        <div class="col-sm-2 max-height">
+        <button type="submit" class="glyphicon glyphicon-transfer btn btn-info btn-fill btn-wd" ng-click="convertimg()">Convert </button>     
     </div>
-    <div class="col-md-4 max-height">
-        <button type="submit" ng-click="convertimg()">Convert </button>     
     </div>
-    <div align="right"  class="col col-md-8">
+   
+     <div class="row">
+    <div align="right"  class="col col-md-5">
         <button ng-click="move(-4, 0)" accesskey="1" class="glyphicon glyphicon-arrow-left btn btn-info btn-fill btn-wd"><br />1</button>
         <button ng-click="move(4, 0)" accesskey="2" class="glyphicon glyphicon-arrow-right	 btn btn-info btn-fill btn-wd"><br />2</button>
         <button ng-click="move(0, -4)" accesskey="3" class="glyphicon glyphicon-arrow-up	 btn btn-info btn-fill btn-wd"><br />3</button>
@@ -33,6 +33,15 @@
         <button ng-click="size(-4, 0)" accesskey="8" class="glyphicon glyphicon-text-width	 btn btn-info btn-fill btn-wd">-<br />8</button>
         <button ng-click="getSnippet()" accesskey="9" class="glyphicon btn btn-info btn-fill btn-wd">getdata<br />9</button>
     </div>
+           <div class="col-sm-2 max-height">
+        <select id="selectType">
+            <option>Photo</option>
+            <option>Signature</option>
+        </select>
+
+    </div>
+     </div>
+     <div class="row">
     <div id="container" class="col-md-4 max-height">
         <img id="scream" width="220" height="277" ng-src="{{myImage}}" alt="The Scream" style="display: none">
         <p>Canvas:</p>
@@ -45,11 +54,12 @@
                 top: 30px;"></div>
 
     </div>
-    <div  class="col-md-4">
+        
+         <div  class="col-sm-4" style="    top: 30px;
+    float: right;    margin-right: -5%;">
+              <button id="crop" class="glyphicon glyphicon-save-file btn btn-info btn-fill btn-wd" ng-click="crop()">crop</button>
         <canvas id="myCanvas1" width="320" height="420" style="border:1px solid #d3d3d3;">
         </canvas>
-        <input type="text" placeholder="Field Type" ng-model="fieldtype">
-        <button id="crop" ng-click="crop()">crop</button>
-
-    </div>
+        </div>
+     </div>
 </div>

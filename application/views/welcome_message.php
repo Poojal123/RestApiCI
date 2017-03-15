@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="utf-8">
    
     <link href="<?php echo base_url();?>assest/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assest/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assest/canvasviewer/src/CanvasViewer.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://fcrohas.github.io/angular-canvas-viewer/assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="http://fcrohas.github.io/angular-canvas-viewer/assets/css/bootstrap.min.css">
