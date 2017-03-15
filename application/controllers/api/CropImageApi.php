@@ -48,28 +48,39 @@ class CropImageApi extends REST_Controller{
                 $this->load->helper('url'); 		
 		$this->load->model('CropImage_model');		
 	}
-function folderscan_get($job="")
+function folderscan_get($folderName)
 	{
 		//echo dirname(__FILE__);
-		
-		$types = $this->TechnicalScrutiny_model->folderscan(TECHNICAL_SCRUTINY_JOB_ROOT."".$job,$job);
+//                echo $folderName ."\n";
+//                echo WEBSITE_URL . SEPARATOR.$folderName."\n";
+//		echo "kjdfhkj ".URL_STORAGE_ROOT ."\n";
+//                echo URL_STORAGE_ROOT."".$folderName;
+		$types = $this->CropImage_model->folderscan($folderName);
 		return $this->set_response(array("status"=>"success","message"=>"List of All files","result"=>$types));
 		
 	}	
-        function GetFolderData_get($id=0)
+        function GetData_get($id=0)
 	{
-		$types = $this->CropImage_model->GetFolderData($id);
-		//echo $types;
+		$types = $this->CropImage_model->GetData($id=0);
+		return $this->set_response(array("status"=>"success","message"=>"List of All files","result"=>$types));
+		
+	}
+        function  ConvertImage_get($name,$ext,$page)
+	{
+//            $params = json_decode(file_get_contents('php://input'),true);
+//            echo $params;
+		$types = $this->CropImage_model->convertImage($name,$ext,$page);
+//		echo $params['name'];
 		return $this->set_response(array("status"=>"success","message"=>"List of all  Data ","result"=>$types));
 		
 	}
-        function  ConvertImage_get($params)
+        function  SaveCoordinates_get($x,$y,$w,$h,$pageNo,$fieldType)
 	{
-            $params = json_decode(file_get_contents('php://input'),true);
-//            echo $params['name'];
-//		$types = $this->CropImage_model->convertImage($params['name']);
+//            $params = json_decode(file_get_contents('php://input'),true);
+//            echo $params;
+		$types = $this->CropImage_model->SaveCoordinates($x,$y,$w,$h,$pageNo,$fieldType);
 //		echo $params['name'];
-		return $this->set_response(array("status"=>"success","message"=>"List of all  Data ","result"=>$params['name']));
+		return $this->set_response(array("status"=>"success","message"=>"List of all  Data ","result"=>$types));
 		
 	}
 }

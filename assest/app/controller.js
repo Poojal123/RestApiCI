@@ -1,4 +1,4 @@
-myApp.controller('CropController', function ($scope, $http,CropImage,FolderScan,Student,CORE_CONFIG,WEB_API) {
+myApp.controller('CropController', function ($scope, $http,CropImage,FolderScan,SaveCoordinates,GetData,CORE_CONFIG,WEB_API) {
 
 //    $scope.customer = Student.get();
 //    $scope.customer.$promise.then(function(result) {
@@ -7,14 +7,27 @@ myApp.controller('CropController', function ($scope, $http,CropImage,FolderScan,
 //        console.log($scope.customers);
 //
 //    });
+  $scope.ImageUrls = [];
 $scope.scanFolder = function(){
-   $scope.imageUrl =  FolderScan.get();
-    $scope.customer.$promise.then(function(result) {
+   $scope.imageUrl =  FolderScan.get({"folderName":$scope.folderName});
+    $scope.imageUrl.$promise.then(function(result) {
 //
         $scope.url = result.result;
-        alert($scope.url);
-
+        $scope.ImageUrls =result.result;
+        alert("dfgdg " +$scope.ImageUrls.length);
+        
+//       $scope.cropMultipleImages();
     });
+}
+$scope.cropMultipleImages =function(){
+    alert("cropp Image "+$scope.ImageUrls.length);
+   $scope.result = GetData.get();
+     $scope.result.$promise.then(function(res){
+         alert(res.result);
+     })
+    for(var i=0;i<$scope.ImageUrls.length ;i++){
+       
+    }
 }
  $scope.formdata = {};
      $scope.formdata.fileInput;
@@ -29,56 +42,35 @@ $scope.scanFolder = function(){
         }
     };
     $scope.formdata.filename;
-    $http.get("http://localhost/bpoapps/storage\\apps\\casaindex\\20161024/002505004132.TIF", {responseType: 'blob'}).then(function (resp) {
-        file = new File([resp], "002505004132.TIF", {type: "image/tiff"});
+    $http.get("http://localhost/RestApiCI/ProjectStorage/sample/sample.tif", {responseType: 'blob'}).then(function (resp) {
+        file = new File([resp], "sample.tif", {type: "image/tiff"});
         $scope.formdata.fileInput = resp.data;
         $scope.formdata.filename = file.name;
         console.log($scope.formdata.fileInput);
     });
 
     $scope.convertimg = function () {
+//        alert()
         
-var name1 = $scope.formdata.filename.split(".");
-//alert(name1[0]);
-        $scope.cropImage = CropImage.get({"name": name1[0]});
+            var name1 = $scope.formdata.filename.split(".");
+//alert(name1[1]);
+            $scope.cropImage = CropImage.get({"name": name1[0],"ext":name1[1],"page": $scope.pageNo});
 
-        $scope.cropImage.$promise.then(function(result){
-            alert("hiii");
+            $scope.cropImage.$promise.then(function(result){
+//            alert("hiii");
             $scope.message = result;
-            $scope.myImage = result.result;
-            alert($scope.myImage);
-            alert($scope.message);
-          
-                $scope.src = $scope.myImage;
+            $scope.myImage = result.result.statusresult;
+            $scope.hei = result.result.height;
+            $scope.wid = result.result.width;
+//            alert("dgdgf "+result.result.statusresult);
+//            alert($scope.message);
+          alert(result.result.statusresult + "result.result.statusresult");
+                $scope.src =  $scope.myImage;
                 var c = document.getElementById("myCanvas");
                 var ctx = c.getContext("2d");
                 ctx.clearRect(0, 0, c.width, c.height);
                 var img1 = document.getElementById("scream");
                 ctx.drawImage(img1, 10, 10);
-        });
-        var res = $http.post('index.php', {"name": file.name});
-//        res.success(function (data, status, headers, config) {
-//            $scope.message = data;
-//            $scope.myImage = data.result;
-//            alert($scope.myImage);
-//            alert($scope.message);
-//            $http.get($scope.myImage, {responseType: 'blob'}).then(function (resp) {
-//                $scope.fileInputOut = resp.data;
-//                $scope.src = $scope.myImage;
-////                        window.onload = function() {
-////                            alert("hii");
-//
-//                var c = document.getElementById("myCanvas");
-//                var ctx = c.getContext("2d");
-//                ctx.clearRect(0, 0, c.width, c.height);
-//                var img1 = document.getElementById("scream");
-//                ctx.drawImage(img1, 10, 10);
-//
-//
-//            });
-//        });
-        res.error(function (data, status, headers, config) {
-            alert("failure message: " + JSON.stringify({data: data}));
         });
     }
     var position;
@@ -114,16 +106,23 @@ var name1 = $scope.formdata.filename.split(".");
         }
     }
     $scope.crop = function () {
-//       alert(position);
+        
         var p = $("#overlay").position();
-        var w1 = $("#overlay").height();
-        var y1 = $("#overlay").width();
-        alert("hiii " + p.left + p.top + w1 + y1);
+        var h1 = $("#overlay").height();
+        var w1 = $("#overlay").width();
+        alert("hiii " + p.left + p.top + w1 + h1);
         var c = document.getElementById("myCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, c.width, c.height);
         var img = document.getElementById("scream");
-        ctx.drawImage(img, p.left, p.top, w1, y1, 10, 10, 200, 200);
+        ctx.drawImage(img, p.left, p.top, w1, h1, 10, 10, 200, 200);
+        $scope.SaveImageData = SaveCoordinates.get({"x":p.left,"y": p.top,"w":w1,"h":h1,"pageNo":$scope.pageNo,"fieldType":$("#selectType option:selected").text()});
+        $scope.SaveImageData.$promise.then(function(result){
+            
+            
+        })
+        
+        
     }
     
 

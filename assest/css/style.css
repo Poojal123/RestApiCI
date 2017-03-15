@@ -4,7 +4,7 @@
                 width:500px;
                 height:350px;
             }
-            div#overlay {
+           #overlay {
                 background: rgba(255, 0, 0, 0.16);
                 width: 40px;
                 height: 40px;

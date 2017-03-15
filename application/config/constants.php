@@ -96,7 +96,8 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
         define('WEBSITE_PATH',FCPATH);
 	define('STORAGE_ROOT',FCPATH."storage");
         define('IMPORT_IMAGES_ROOT',WEBSITE_PATH."ProjectStorage".SEPARATOR."17022017HA08".SEPARATOR."");
-        define('WEBSITE_URL','http://localhost/RestApi/');
-        define('URL_STORAGE_ROOT',WEBSITE_URL."ProjectStorage".SEPARATOR."");
-	define('URL_IMPORT_IMAGES_ROOT',URL_STORAGE_ROOT."17022017HA08".SEPARATOR."");	
+        define('WEBSITE_URL','http://localhost/RestApiCI/');
+        define('URL_STORAGE_ROOT_URL',WEBSITE_URL."ProjectStorage".SEPARATOR."");
+        define('URL_STORAGE_ROOT',$_SERVER['DOCUMENT_ROOT']."/RestApiCI/ProjectStorage/");
+//	define('URL_IMPORT_IMAGES_ROOT',URL_STORAGE_ROOT."17022017HA08".SEPARATOR."");	
 //        define('URL_IMAGE_INDEXING_JOB_ROOT',URL_IMPORT_IMAGES_ROOT."casaindex".SEPARATOR."");

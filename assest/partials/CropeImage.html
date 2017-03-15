@@ -2,11 +2,11 @@
    <form class="form-inline">
     <div class="form-group">
       <label for="email">Folder Name </label>
-      <input type="text" class="form-control" id="foldername" placeholder="Enter Folder Name Of Images">
+      <input type="text" class="form-control" id="foldername" ng-model="folderName"  placeholder="Enter Folder Name Of Images">
     </div>
     <button type="submit" ng-click="scanFolder()" class="btn btn-default">Submit</button>
   </form>
-
+    <input type="text" class="form-control" id="pageNumber" ng-model="pageNo" placeholder="Enter Page no Which you want to crop">
     <div class="col-md-5 max-height">
         <div class="content" style="height:70vh;" >
             <canvas-viewer src="formdata.fileInput" title="TITLE" options="options"></canvas-viewer>
@@ -36,14 +36,19 @@
     <div id="container" class="col-md-4 max-height">
         <img id="scream" width="220" height="277" ng-src="{{myImage}}" alt="The Scream" style="display: none">
         <p>Canvas:</p>
-        <canvas id="myCanvas" width="320" height="420" style="border:1px solid #d3d3d3;">
+        <canvas id="myCanvas" width="800" height="800" style="border:1px solid #d3d3d3;">
         </canvas>
-        <div id="overlay"></div>
+        <div id="overlay" style=" background: rgba(255, 0, 0, 0.16);
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                top: 30px;"></div>
 
     </div>
     <div  class="col-md-4">
         <canvas id="myCanvas1" width="320" height="420" style="border:1px solid #d3d3d3;">
         </canvas>
+        <input type="text" placeholder="Field Type" ng-model="fieldtype">
         <button id="crop" ng-click="crop()">crop</button>
 
     </div>
