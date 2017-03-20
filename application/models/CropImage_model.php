@@ -35,6 +35,12 @@ class CropImage_model extends CI_Model{
 //                print_r($arrFiles);
 		$arrSortedFiles = array();
                 $count =0;
+                $date = date('Y-m-d h:i:s');   // MySQL datetime format
+                $time = date("H:i:s",strtotime($date));  
+                 $dt = date("Y-m-d",strtotime($date));
+               
+                $mypath=URL_STORAGE_ROOT.""."Cropped_".$dt.str_replace(':', '', $time);
+                mkdir($mypath,0777,TRUE);
 		for($i=0;$i<count($arrFiles);$i++)
 		{
                         if(!is_dir($fileName."//".$arrFiles[$i])){ 
@@ -49,7 +55,7 @@ class CropImage_model extends CI_Model{
                                     foreach($images as $i1=>$image) {
                                         // Providing 0 forces thumbnail Image to maintain aspect ratio
                                         if($i1 == $pageNo0-1){
-                                            echo "in if";
+//                                            echo "in if";
                                              $fname = pathinfo($arrFiles[$i], PATHINFO_FILENAME);
                                              $imagepic = $image;
                                                
@@ -58,13 +64,13 @@ class CropImage_model extends CI_Model{
 //                                         $image->cropImage(316, 404, 15, 30);
                                         $image->resizeImage(800,800,Imagick::FILTER_LANCZOS,1);
                                         $image->cropImage($w0, $h0, $x0, $y0);
-                                        $image->writeImage($structure."/cropped"."/".$fname."_Photo".".jpg");
+                                        $image->writeImage($mypath."/".$fname."_Photo".".jpg");
                                         }
                                       if($type == 'Signature'){
 //                                        $image->thumbnailImage(768,0);
                                         $image->resizeImage(800,800,Imagick::FILTER_LANCZOS,1);
                                         $image->cropImage($w, $h, $x, $y);
-                                        $image->writeImage($structure."/cropped"."/".$fname."_Signature".".jpg");
+                                        $image->writeImage($mypath."/".$fname."_Signature".".jpg");
                                         }
                                          
                                         }
@@ -75,18 +81,17 @@ class CropImage_model extends CI_Model{
                                     foreach($images1 as $i1=>$image) {
                                         // Providing 0 forces thumbnail Image to maintain aspect ratio
                                         if($i1 == $pageNo0-1){
-                                            echo "in if";
+//                                            echo "in if";
                                              $fname = pathinfo($arrFiles[$i], PATHINFO_FILENAME);
                                            
                                       if($type == 'Signature'){
 //                                        $image->thumbnailImage(768,0);
                                         $image->resizeImage(800,800,Imagick::FILTER_LANCZOS,1);
                                         $image->cropImage($w, $h, $x, $y);
-                                        $image->writeImage($structure."/cropped"."/".$fname."_Signature".".jpg");
+                                        $image->writeImage($mypath."/".$fname."_Signature".".jpg");
                                         }
                                          
                                         }
-//                                        echo "<img src='page$i.jpg' alt='images' ></img>";
                                     }
                                     $images1->clear();
                                     }
@@ -95,37 +100,7 @@ class CropImage_model extends CI_Model{
                                             echo $e->getMessage();
                                     }
                                 
-                                
-                                
-                                
-                                
-//                                $images = new Imagick(URL_STORAGE_ROOT.$fileName."/".$arrFiles[$i]);
-////                                echo "befor loop";
-//                                foreach($images as $i1=>$image) {
-////                                    echo "hiii";
-//                                  if($i1==$pageNo-1){
-//                                    $image->resizeImage(800,800,Imagick::FILTER_LANCZOS,1);
-//                                    $structure = URL_STORAGE_ROOT."CONVERTED";
-//                                    echo $structure;
-//                                     if (!file_exists($structure)) {
-//                                      mkdir($structure, 0777, true);
-////                                        die('Failed to create folders...');
-//                                     }
-//////                                    $fname = pathinfo($arrFiles[$i], PATHINFO_FILENAME);
-//////                                     $image->writeImage($structure."/".$fname."_".$i.".jpg");
-//////                                     $imagick1 = new \Imagick(realpath($structure."/".$fname."_".$i.".jpg"));
-//////                                        $imagick1->cropImage($w, $h, $x, $y);
-//////                                        $imagick1->writeImage($structure."/cropped/".$fname."_".$i.".jpg");
-//                                        $image->cropImage(316, 404, 15, 30);
-////                                        $image->cropImage($w, $h, $x, $y);
-//                                        $image->writeImage($structure."/cropped/".$arrFiles[$i]."_".$count.".jpg");
-//                                        return;
-//                                  }
-//
-//                                }
-//                            $images->clear();
-//                            echo "hiii ";
-                            $arrSortedFiles[] = $arrFiles[$i];
+                                $arrSortedFiles[] = $arrFiles[$i];
                             }
 
                         }
@@ -146,6 +121,7 @@ class CropImage_model extends CI_Model{
 
         }
         public function SaveCoordinates($x,$y,$w,$h,$pageNo,$fieldType){
+            
             
             $sql1 = "truncate table vu_imgsettings";
             $qparent1 = $this->db->query($sql1);
